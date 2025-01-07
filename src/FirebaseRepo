@@ -31,7 +31,7 @@ class FirebaseUtil {
         const customDocId = `doc-${timestamp}`;
         const docRef = doc(ref, customDocId); // Create a document reference with the custom ID
         await setDoc(docRef, model); // Use setDoc instead of addDoc to specify the ID
-        return { state: 'success', data: customDocId };
+        return { state: 'success', key: customDocId };
       }
 
       return { state: 'success', data: 'Document created successfully' };
