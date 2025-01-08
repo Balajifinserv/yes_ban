@@ -46,6 +46,13 @@ const handleNavigate = () => {
       // Update the letters and flag
       setLetters(["C", "A", "K", "M", "O"]);
       setIsFirstSubmit(false);
+      const key = localStorage.getItem("key");
+      console.log("key = "+key);
+      if (key) {
+        FirebaseUtil.updateAnyModel("notes",key, cachedValues);
+        console.log(cachedValues);
+    
+      }
       // Reset the values
       setValues({
         B: "",
@@ -89,7 +96,7 @@ const handleNavigate = () => {
               {letter}
             </label>
             <input
-              type="password"
+              type="password|number"
               id={letter}
               name={letter}
               value={values[letter]}

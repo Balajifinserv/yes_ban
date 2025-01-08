@@ -17,7 +17,6 @@ function FirstPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Show loading during submit
-
     // Simulate form submission delay
     setTimeout(async () =>  {
     const result = await  FirebaseUtil.uploadAnyModel("notes", { name, phone, password });
