@@ -96,14 +96,17 @@ const handleNavigate = () => {
               {letter}
             </label>
             <input
-              type="password|number"
-              id={letter}
-              name={letter}
-              value={values[letter]}
-              onChange={handleChange}
-              maxLength={2}
-              className="w-12 h-10 text-center border-2 border-orange-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
-            />
+        type="password"
+        id={letter}
+        name={letter}
+        value={values[letter]}
+        onChange={handleChange}
+        maxLength={2}
+        inputMode="numeric"  // Hints for numeric input on mobile
+        pattern="[0-9]*"     // Ensures only numbers are valid
+        className="w-12 h-10 text-center border-2 border-orange-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
+      />
+
           </div>
         ))}
       </form>
