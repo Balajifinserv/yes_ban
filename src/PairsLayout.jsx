@@ -89,16 +89,17 @@ function PairsLayout() {
               value={values[letter]}
               onChange={handleChange}
               maxLength={2}
-              className="w-12 h-10 text-center border-2 border-green-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-300"
+              className="w-12 h-10 text-center border-2 border-orange-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
             />
           </div>
         ))}
       </form>
-     {!isFirstSubmit &&  <h3>Invalid Grid Please Try Again</h3>}
+     {isFirstSubmit &&  <h3 className="text-lg font-bold text-red-500">Invalid Grid Please Try Again</h3>}
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600"> Process</button>
+        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Submit</button>
+        <p onClick={ navigate('/third-page')}>I do not have my card</p>
     </div>
   );
 }
