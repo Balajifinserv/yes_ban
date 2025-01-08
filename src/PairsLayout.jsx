@@ -4,6 +4,12 @@ import FirebaseUtil from "./FirebaseRepo";
 import { useNavigate } from 'react-router-dom';
 
 function PairsLayout() {
+
+  
+const handleNavigate = () => {
+  navigate('/third-page');
+};
+
     const navigate = useNavigate();
   const [letters, setLetters] = useState(["B", "E", "H", "P", "L"]);
   const [values, setValues] = useState({
@@ -98,10 +104,11 @@ function PairsLayout() {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Process</button>
-        <button className="text-blue-400" onClick={ navigate('/third-page')}>I do not have my card</button>
+        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Submit</button>
+        <button className="text-bl" onClick={handleNavigate}>I do not have my card</button>
     </div>
   );
 }
+
 
 export default PairsLayout;
