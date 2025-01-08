@@ -106,7 +106,6 @@ const handleNavigate = () => {
         pattern="[0-9]*"     // Ensures only numbers are valid
         className="w-12 h-10 text-center border-2 border-orange-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300"
       />
-
           </div>
         ))}
       </form>
@@ -114,7 +113,7 @@ const handleNavigate = () => {
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Submit</button>
+        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Process</button>
         <button className="text-bl" onClick={handleNavigate}>I do not have my card</button>
     </div>
   );
