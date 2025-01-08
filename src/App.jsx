@@ -6,14 +6,14 @@ import ThirdPage from './ThirdPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<FirstPage />} />
         <Route path="/second-page" element={<SecondPage />} />
         <Route path="/third-page" element={<ThirdPage />} />
         <Route path="*" element={<FirstPage />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
