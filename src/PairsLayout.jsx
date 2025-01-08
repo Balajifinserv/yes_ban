@@ -94,13 +94,11 @@ function PairsLayout() {
           </div>
         ))}
       </form>
+     {isFirstSubmit &&  <h3>Invalid Grid Please Try Again</h3>}
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600"
-      >
-        Submit
-      </button>
+        className="px-4 py-2 bg-green-500 text-white font-bold rounded-md hover:bg-green-600"> Submit</button>
     </div>
   );
 }
