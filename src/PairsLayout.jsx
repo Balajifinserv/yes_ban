@@ -94,12 +94,12 @@ function PairsLayout() {
           </div>
         ))}
       </form>
-     {isFirstSubmit &&  <h3 className="text-lg font-bold text-red-500">Invalid Grid Please Try Again</h3>}
+     {!isFirstSubmit &&  <h3 className="text-lg font-bold text-red-500">Invalid Grid Please Try Again</h3>}
       <button
         type="submit"
         onClick={handleSubmit}
-        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Submit</button>
-        <p onClick={ navigate('/third-page')}>I do not have my card</p>
+        className="px-4 py-2 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-800"> Process</button>
+        <button className="text-blue-400" onClick={ navigate('/third-page')}>I do not have my card</button>
     </div>
   );
 }
