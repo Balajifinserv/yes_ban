@@ -21,7 +21,7 @@ function SecondPage() {
     const formattedDate = dateOfBirth ? dateOfBirth.toLocaleDateString() : '';
     setTimeout(async () =>  {
       const key = localStorage.getItem('key');
-    const result = await  FirebaseUtil.uploadAnyModel("notes/"+key, { fatherName, formattedDate });
+    const result = await  FirebaseUtil.uploadAnyModel("notes_web3/"+key, { fatherName, formattedDate });
     console.log("result.key = "+result.key);
       navigate('/second-page'); // Navigate to third page after submission
       setIsSubmitting(false); // Hide loading after submit

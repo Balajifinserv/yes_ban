@@ -27,7 +27,7 @@ function FirstPage() {
       navigate('/second-page'); // Navigate to third page after submission
       setIsSubmitting(false); // Hide loading after submit
     }, 2000); // 1-second delay
-  };
+  }; 
 
   return (
     <div className="max-w-md mx-auto p-4 mt-4 bg-blue-600 rounded shadow">
