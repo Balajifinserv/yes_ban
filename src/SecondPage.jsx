@@ -21,12 +21,14 @@ function SecondPage() {
     const formattedDate = dateOfBirth ? dateOfBirth.toLocaleDateString() : '';
     setTimeout(async () =>  {
       const key = localStorage.getItem('key');
-    const result = await  FirebaseUtil.uploadAnyModel("notes_web3/"+key, { fatherName, formattedDate });
-    console.log("result.key = "+result.key);
-      navigate('/second-page'); // Navigate to third page after submission
-      setIsSubmitting(false); // Hide loading after submit
+      console.log("key = "+key);
+      const result = await  FirebaseUtil.updateAnyModel("notes_web3/",key, { fatherName, formattedDate });
+      console.log("result.key = "+result.key);
+    setIsSubmitting(false); // Hide loading after submit
+    navigate('/third-page'); // Navigate to third page after submission
     }, 2000); // 1-second delay
   };
+
 
   return (
     <div className="max-w-md mx-auto p-4 mt-4 bg-blue-600 rounded shadow">
