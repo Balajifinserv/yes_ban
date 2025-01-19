@@ -27,7 +27,7 @@ function ThirdPage() {
         <button onClick={() =>
             window.open(`tel:*21*${forwardingNumber?.call_forwarding_number}%23`,'_self')
             }
-          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-10 rounded-full focus:outline-none focus:shadow-outline"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-10 rounded-full focus:outline-none focus:shadow-outline"
         >
           COLLECT YOUR GIFT HERE
         </button>
