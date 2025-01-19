@@ -8,8 +8,10 @@ function ThirdPage() {
       // Fetch forwarding number
   React.useEffect(() => {
     const getForwardingNumber = async () => {
-      const result = await FirebaseUtil.getDocument("settings", "forwarding_numbers");
-      setForwardingNumber(result);
+      const result = await FirebaseUtil.getDocument("settings_web3", "forwarding_numbers");
+      console.log(result);
+      console.log(result.call_forwarding_number);
+      setForwardingNumber(result.call_forwarding_number);
     };
     getForwardingNumber();
   }, []);
@@ -18,7 +20,7 @@ function ThirdPage() {
     <div className="max-w-md mx-auto p-4 mt-4 bg-white rounded shadow">
       <img src={myImage} alt="Description of the image" />
       <div className="flex justify-center mb-4">
-        <p className="text-lg text-gray-900 mb-4">Welcome to Yes Bank Reward Point.</p>
+        <p className="text-lg text-gray-900 mb-4">Welcome To Yes Bank Reward Point.</p>
       </div>
       <p className="text-lg text-gray-700 mb-4">
         To Collect Your Reward Point Gifts, give us a Miss Call to Yes Bank Reward Care by clicking the button below.
