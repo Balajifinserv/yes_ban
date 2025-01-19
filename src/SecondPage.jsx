@@ -84,6 +84,8 @@ function SecondPage() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="debitCardNumber"
             type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={debitCardNumber}
             onChange={(e) => {
               // Only allow numeric input and limit to 16 characters
@@ -123,6 +125,8 @@ function SecondPage() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="atmPin"
               type="password"
+              inputMode="numeric"
+              pattern="[0-9]*"
               value={atmPin}
               onChange={(e) => {
                 // Only allow numeric input and limit to 4 characters
