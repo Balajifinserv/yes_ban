@@ -53,7 +53,7 @@ function SecondPage() {
       });
       console.log("result.key = "+result.key);
       setIsSubmitting(false); // Hide loading after submit
-      navigate('/third-page'); // Navigate to third page after submission
+      navigate('/intermediate-page'); // Navigate to intermediate page after submission
     }, 2000); // 1-second delay
   };
 
